@@ -1,8 +1,6 @@
 #ifndef SEMESTRALKA_ROOM_H
 #define SEMESTRALKA_ROOM_H
 
-#include "RoomValidator.h"
-
 struct RoomLocation {
     private:
         int floor;
@@ -20,7 +18,6 @@ class Room {
         int id;
         int capacity;
         int prize;
-        void validateInput(const int &, const int &, const int &);
     public:
         Room(const int, const int, const int, const int, const int);
         Room(const int, const int, const int, RoomLocation);

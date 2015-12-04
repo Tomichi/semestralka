@@ -4,7 +4,7 @@ RoomValidator::RoomValidator() {}
 
 RoomValidator::~RoomValidator() {}
 
-void  RoomValidator::validateInput(const int & id, const int & prize, const int & capacity) {
+void RoomValidator::validateInput(const int &id, const int &prize, const int &capacity) {
     if (!RoomValidator::isIdValid(id)) {
         throw InvalidRoomIdException("id#" + to_string(id) + " is not valid.");
     }
