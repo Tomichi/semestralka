@@ -13,11 +13,10 @@ int RoomLocation::getFloor() {
     return floor;
 }
 
-RoomLocation::~RoomLocation() {
-
-}
+RoomLocation::~RoomLocation() { }
 
 Room::Room(const int id, const int capacity, const int prize, const int floor, const int door) {
+    RoomValidator::validateInput(id, prize, capacity);
     this->id = id;
     this->capacity = capacity;
     this->prize = prize;
@@ -25,6 +24,7 @@ Room::Room(const int id, const int capacity, const int prize, const int floor, c
 }
 
 Room::Room(const int id, const int capacity, const int prize, RoomLocation location) {
+    RoomValidator::validateInput(id, prize, capacity);
     this->id = id;
     this->capacity = capacity;
     this->prize = prize;
