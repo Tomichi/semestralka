@@ -6,15 +6,16 @@ struct RoomLocation {
         int floor;
         int door;
     public:
-        RoomLocation(const int , const int);
+        RoomLocation();
+        RoomLocation(const int, const int);
         ~RoomLocation();
-        int getFloor();
-        int getDoor();
+        const int & getFloor() const;
+        const int & getDoor() const;
 };
 
 class Room {
     private:
-        RoomLocation *location = nullptr;
+        RoomLocation location;
         int id;
         int capacity;
         int prize;
@@ -24,10 +25,10 @@ class Room {
         ~Room();
 
         // getters
-        int getId();
-        int getCapacity();
-        int getPrize();
-        RoomLocation getRoomLocation();
+        const int & getId() const;
+        const int & getCapacity() const;
+        const int & getPrize() const;
+        const RoomLocation & getRoomLocation() const;
 };
 
 #endif //SEMESTRALKA_ROOM_H

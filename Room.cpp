@@ -6,22 +6,29 @@ RoomLocation::RoomLocation(const int floor, const int door) {
     this->door = door;
 }
 
-int RoomLocation::getDoor() {
+RoomLocation::RoomLocation() {
+    this->floor = 0;
+    this->door = 0;
+}
+
+const int & RoomLocation::getDoor() const {
     return door;
 }
 
-int RoomLocation::getFloor() {
+const int & RoomLocation::getFloor() const {
     return floor;
 }
 
-RoomLocation::~RoomLocation() { }
+RoomLocation::~RoomLocation() {
+}
 
 Room::Room(const int id, const int capacity, const int prize, const int floor, const int door) {
     RoomValidator::validateInput(id, prize, capacity);
     this->id = id;
     this->capacity = capacity;
     this->prize = prize;
-    this->location = new RoomLocation(floor, door);
+    RoomLocation tmpLocation(floor, door);
+    this->location = tmpLocation;
 }
 
 Room::Room(const int id, const int capacity, const int prize, RoomLocation location) {
@@ -29,27 +36,25 @@ Room::Room(const int id, const int capacity, const int prize, RoomLocation locat
     this->id = id;
     this->capacity = capacity;
     this->prize = prize;
-    this->location = new RoomLocation(location.getFloor(), location.getDoor());
+    this->location = location;
 }
 
 Room::~Room() {
-    delete this->location;
-    this->location = nullptr;
 }
 
 // getters
-int Room::getId() {
+const int & Room::getId() const{
     return this->id;
 }
 
-int Room::getCapacity() {
+const int & Room::getCapacity() const {
     return this->capacity;
 }
 
-int Room::getPrize() {
+const int & Room::getPrize() const {
     return this->prize;
 }
 
-RoomLocation Room::getRoomLocation() {
-    return *location;
+const RoomLocation & Room::getRoomLocation() const {
+    return location;
 }

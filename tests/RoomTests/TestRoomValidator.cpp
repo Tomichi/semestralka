@@ -1,5 +1,5 @@
-#include "gtest/gtest.h"
 #include "../../RoomValidator.h"
+#include "gtest/gtest.h"
 
 TEST(TestValidator, valdiateId) {
     EXPECT_TRUE(RoomValidator::isIdValid(1));

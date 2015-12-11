@@ -3,7 +3,9 @@ include_directories(${SOURCE_FILES})
 
 
 add_executable(runRoomTest
-        RoomValidatorTest.cpp
-        RoomTest.cpp)
+        TestRoomValidator.cpp
+        TestRoom.cpp
+        TestSearchEngine.cpp
+        TestHotelValidator.cpp)
 
 target_link_libraries(runRoomTest gtest gtest_main)
