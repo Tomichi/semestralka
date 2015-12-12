@@ -14,9 +14,6 @@ class TestHotelValidator: public::testing::Test {
         }
 
         void TearDown() {
-            for (int i = 0; i < (int)database.size(); i++) {
-                delete database[i];
-            }
             database.clear();
         }
 };

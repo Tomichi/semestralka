@@ -11,16 +11,15 @@ RoomLocation::RoomLocation() {
     this->door = 0;
 }
 
-const int & RoomLocation::getDoor() const {
+const int RoomLocation::getDoor() const {
     return door;
 }
 
-const int & RoomLocation::getFloor() const {
+const int RoomLocation::getFloor() const {
     return floor;
 }
 
-RoomLocation::~RoomLocation() {
-}
+RoomLocation::~RoomLocation() { }
 
 Room::Room(const int id, const int capacity, const int prize, const int floor, const int door) {
     RoomValidator::validateInput(id, prize, capacity);
@@ -39,22 +38,20 @@ Room::Room(const int id, const int capacity, const int prize, RoomLocation locat
     this->location = location;
 }
 
-Room::~Room() {
-}
+Room::~Room() { }
 
-// getters
-const int & Room::getId() const{
+const int Room::getId() const {
     return this->id;
 }
 
-const int & Room::getCapacity() const {
+const int Room::getCapacity() const {
     return this->capacity;
 }
 
-const int & Room::getPrize() const {
+const int Room::getPrize() const {
     return this->prize;
 }
 
-const RoomLocation & Room::getRoomLocation() const {
+const RoomLocation &Room::getRoomLocation() const {
     return location;
 }

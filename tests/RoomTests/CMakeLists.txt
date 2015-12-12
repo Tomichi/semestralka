@@ -6,6 +6,9 @@ add_executable(runRoomTest
         TestRoomValidator.cpp
         TestRoom.cpp
         TestSearchEngine.cpp
-        TestHotelValidator.cpp)
+        TestHotelValidator.cpp
+        TestHotel.cpp
+        TestDayReservation.cpp
+        )
 
 target_link_libraries(runRoomTest gtest gtest_main)

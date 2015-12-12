@@ -2,16 +2,26 @@
 #define SEMESTRALKA_HOTEL_H
 
 #include <vector>
+#include <algorithm>
 #include "Room.h"
 #include "HotelValidator.h"
 
-class Hotels{
+class Hotel {
     private:
-        std::vector<Room*> database;
+        std::vector<Room *> database;
+
     public:
-        Hotels();
-        ~Hotels();
-        void pushRoomToDatabase(Room * &);
+        Hotel();
+
+        ~Hotel();
+
+        void pushRoomToDatabase(Room *);
+
+        void sortRoomsById();
+
+        const std::vector<Room *> & getRooms() const;
+
+        static const bool compareRoomsById(Room *, Room *);
 };
 
 
