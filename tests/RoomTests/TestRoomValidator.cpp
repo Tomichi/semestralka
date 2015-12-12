@@ -15,7 +15,7 @@ TEST(TestValidator, valdiatePrize) {
     EXPECT_FALSE(RoomValidator::isPrizeValid(0));
 }
 
-TEST(TestValidator, valdiateCapacit) {
+TEST(TestValidator, valdiateCapacity) {
     EXPECT_TRUE(RoomValidator::isCapacityValid(1));
     EXPECT_TRUE(RoomValidator::isCapacityValid(30004));
     EXPECT_FALSE(RoomValidator::isCapacityValid(-24000));

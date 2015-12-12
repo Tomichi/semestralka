@@ -8,13 +8,11 @@
 class HotelValidator {
 private:
     HotelValidator();
-
     ~HotelValidator();
 
 public:
-    static bool isIdRoomDuplicate(const std::vector<Room *>, const int);
-
-    static void roomValidate(const std::vector<Room *>, const int);
+    static bool isIdRoomDuplicate(std::vector<Room> &, const int);
+    static void roomValidate(std::vector<Room> &, const int);
 };
 
 #endif //SEMESTRALKA_HOTELVALIDATOR_H

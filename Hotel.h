@@ -8,20 +8,14 @@
 
 class Hotel {
     private:
-        std::vector<Room *> database;
-
+        std::vector<Room> database;
     public:
         Hotel();
-
         ~Hotel();
-
-        void pushRoomToDatabase(Room *);
-
+        void pushRoomToDatabase(Room &);
         void sortRoomsById();
-
-        const std::vector<Room *> & getRooms() const;
-
-        static const bool compareRoomsById(Room *, Room *);
+        const std::vector<Room> & getRooms() const;
+        static const bool compareRoomsById(Room &, Room &);
 };
 
 

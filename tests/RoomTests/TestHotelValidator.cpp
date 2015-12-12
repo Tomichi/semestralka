@@ -1,15 +1,15 @@
-#include "gtest/gtest.h"
 #include "../../HotelValidator.h"
 #include "../../HotelValidator.cpp"
-#include "../../HotelValidatorException.h"
 #include "../../HotelValidatorException.cpp"
+#include "gtest/gtest.h"
 
 class TestHotelValidator: public::testing::Test {
     protected:
-        std::vector<Room*> database;
+        std::vector<Room> database;
         void SetUp() {
             for (int i = 1; i < 4; i++) {
-                database.push_back(new Room(i, 2, 4, 9, 10));
+                Room room(i, 2, 4, 9, 10);
+                database.push_back(room);
             }
         }
 

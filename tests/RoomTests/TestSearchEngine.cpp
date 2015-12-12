@@ -7,16 +7,16 @@ class TestSearchEngine : public ::testing::Test {
 protected:
     void SetUp() {
         for (int i = 1; i < 5; i++) {
-            this->database.push_back(new Room(i, 2, 4, 4, 5));
+            Room room(i, 2, 3, 4, 5);
+            this->database.push_back(room);
         }
     }
+
     void TearDown() {
-        for(unsigned long int i = 0; i < this->database.size(); i++) {
-            delete this->database[i];
-        }
         this->database.clear();
     }
-    std::vector<Room*> database;
+
+    std::vector<Room> database;
 };
 
 

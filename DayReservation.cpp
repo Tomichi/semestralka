@@ -6,14 +6,22 @@ DayReservation::DayReservation(const int day) {
 
 DayReservation::~DayReservation() {
     for (int i = 0; i < (int) this->booking.size(); i++) {
-        booking.pop_back();
+        this->booking.pop_back();
     }
 }
 
-void DayReservation::reserveDay(Room *&room) {
-    this->booking.push_back(room);
+void DayReservation::reserveDay(Room &room) {
+    this->booking.push_back(&room);
 }
 
 const std::vector<Room *> *DayReservation::getReserveRooms() const {
     return &(this->booking);
+}
+
+const int DayReservation::getNumberDay() const {
+    return this->day;
+}
+
+const bool DayReservation::isReservationEmpty() const {
+    return this->booking.size() == 0;
 }

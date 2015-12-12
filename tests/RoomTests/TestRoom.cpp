@@ -1,6 +1,5 @@
 #include "../../Room.h"
 #include "../../Room.cpp"
-#include "../../RoomValidatorException.h"
 #include "../../RoomValidatorException.cpp"
 #include "../../RoomValidator.h"
 #include "../../RoomValidator.cpp"

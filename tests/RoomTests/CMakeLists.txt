@@ -9,6 +9,8 @@ add_executable(runRoomTest
         TestHotelValidator.cpp
         TestHotel.cpp
         TestDayReservation.cpp
+        TestMonth.cpp
+        TestYear.cpp
         )
 
 target_link_libraries(runRoomTest gtest gtest_main)

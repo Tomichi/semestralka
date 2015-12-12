@@ -1,6 +1,5 @@
 #include "../../Hotel.h"
 #include "../../Hotel.cpp"
-#include "../../Room.h"
 #include "gtest/gtest.h"
 
 class TestHotel : public ::testing::Test {
@@ -15,29 +14,30 @@ class TestHotel : public ::testing::Test {
         }
 
         void TearDown() {
-            hotel->~Hotel();
+            delete hotel;
         }
 
         void generateValidInputRooms() {
             for (int i = 0; i < this->roomCount; i++) {
-                this->hotel->pushRoomToDatabase(new Room(this->roomCount - i, 2, 3, 5, 5));
+                Room room(this->roomCount - i, 2, 3, 5, 5);
+                this->hotel->pushRoomToDatabase(room);
             }
         }
 };
 
 
 TEST_F(TestHotel, testBasicGetRooms) {
-    const std::vector<Room *> tmpRoomDatabase = this->hotel->getRooms();
+    const std::vector<Room> tmpRoomDatabase = this->hotel->getRooms();
     EXPECT_EQ(this->roomCount, tmpRoomDatabase.size());
 }
 
 TEST_F(TestHotel, testBasicSort) {
     this->hotel->sortRoomsById();
-    std::vector<Room *> tmpRoomDatabase = this->hotel->getRooms();
+    std::vector<Room> tmpRoomDatabase = this->hotel->getRooms();
 
     int i = 1;
-    for(std::vector<Room*>::iterator it = tmpRoomDatabase.begin(); it != tmpRoomDatabase.end(); it++, i++) {
-        EXPECT_EQ(i, (*it)->getId());
+    for(std::vector<Room>::iterator it = tmpRoomDatabase.begin(); it != tmpRoomDatabase.end(); it++, i++) {
+        EXPECT_EQ(i, it->getId());
     }
 }
 

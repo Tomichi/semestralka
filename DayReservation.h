@@ -10,14 +10,11 @@ class DayReservation {
         std::vector<Room *> booking;
     public:
         DayReservation(const int);
-
         ~DayReservation();
-
+        const int getNumberDay() const;
         const std::vector<Room *> * getReserveRooms() const;
-
-        void reserveDay(Room * &);
-
-
+        void reserveDay(Room &);
+        const bool isReservationEmpty() const;
 };
 
 
