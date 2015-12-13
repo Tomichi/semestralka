@@ -4,7 +4,6 @@
 #include "../../DayReservationException.cpp"
 #include "gtest/gtest.h"
 
-
 class TestDayReservation : public ::testing::Test {
 protected:
     std::vector<Room> rooms;
@@ -25,7 +24,6 @@ protected:
         }
     }
 };
-
 
 TEST_F(TestDayReservation, testDestructor) {
     DayReservation dayReservation(1);

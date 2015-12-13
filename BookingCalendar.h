@@ -19,6 +19,7 @@ class BookingCalendar {
         void reserveRoom(Room &, const int, const int, const int);
         const std::vector<Room*> * getRoomReservationByDate(const int, const int, const int);
         std::vector<Room> findFreeRoomInDay(Hotel &, const int, const int, const int);
+        std::vector<Room> findFreeRoomInDay(Hotel &, const int, const int, const int);
 };
 
 
