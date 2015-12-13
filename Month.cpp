@@ -22,10 +22,6 @@ void Month::generateDays(const int days) {
     }
 }
 
-const std::vector<Room*> * Month::getRoomsFromDays(const int day) const {
-    return this->days.at(day - 1).getReserveRooms();
-}
-
 const int Month::getMonthNumber() const {
     return this->month;
 }

@@ -17,7 +17,6 @@ class Month {
         const int getMonthNumber() const;
         const int getDays() const;
         void bookingRoomToDay(const int, Room &);
-        const std::vector<Room*> * getRoomsFromDays(const int day) const;
         DayReservation * getReservationDay(const int);
 };
 
