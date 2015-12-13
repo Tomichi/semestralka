@@ -11,17 +11,20 @@ TEST(TestBookingCalendar, testBasicUsage) {
     BookingCalendar calendar(2015);
     calendar.generateNextYear(2016);
     std::vector<Year> years = calendar.getYears();
+    Year * actualYear = &(years.at(0));
     for (int i = 0; i < 12; i++) {
-        EXPECT_EQ(daysInMonths[i], years[0].getMonths()[i].getDays().size());
+        EXPECT_EQ(daysInMonths[i], actualYear->getMonth(i + 1)->getDays());
     }
 
+    actualYear = & (years.at(1));
     for (int i = 0; i < 12; i++) {
         if (i == 1) {
-            EXPECT_EQ(daysInMonths[i] + 1, years[1].getMonths()[i].getDays().size());
+            EXPECT_EQ(daysInMonths[i] + 1, actualYear->getMonth(i + 1)->getDays());
         } else {
-            EXPECT_EQ(daysInMonths[i], years[1].getMonths()[i].getDays().size());
+            EXPECT_EQ(daysInMonths[i], actualYear->getMonth(i + 1)->getDays());
         }
     }
+    actualYear = NULL;
 }
 
 

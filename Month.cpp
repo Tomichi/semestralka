@@ -2,12 +2,17 @@
 
 Month::Month(const int month, const int days) {
     this->month = month;
-    // test if days is valid
     this->generateDays(days);
+    this->daysInMonth = days;
 }
 
 Month::~Month() {
     this->days.clear();
+}
+
+
+const int Month::getDays() const {
+    return this->daysInMonth;
 }
 
 void Month::generateDays(const int days) {
@@ -15,9 +20,6 @@ void Month::generateDays(const int days) {
         DayReservation day(i);
         this->days.push_back(day);
     }
-}
-std::vector<DayReservation> & Month::getDays() {
-    return this->days;
 }
 
 const std::vector<Room*> * Month::getRoomsFromDays(const int day) const {
@@ -34,4 +36,9 @@ void Month::bookingRoomToDay(const int day, Room & room) {
     } else {
         this->days.at(day - 1).reserveDay(room);
     }
+}
+
+
+DayReservation * Month::getReservationDay(const int day) {
+    return &(this->days.at(day - 1));
 }

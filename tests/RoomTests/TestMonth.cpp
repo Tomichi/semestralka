@@ -4,18 +4,16 @@
 
 TEST(TestMonth, testEmptyDays) {
     Month month(1, 0);
-    const std::vector<DayReservation> days = month.getDays();
-    EXPECT_EQ(0, days.size());
+    EXPECT_EQ(0, month.getDays());
     EXPECT_EQ(1, month.getMonthNumber());
 }
 
 TEST(TestMonth, testGenerateDays) {
     Month month(2, 3);
     EXPECT_EQ(2, month.getMonthNumber());
-    const std::vector<DayReservation> days = month.getDays();
-    EXPECT_EQ(3, days.size());
-    for (int i = 0; i < 3; i++) {
-        EXPECT_EQ(i+1, days[i].getNumberDay());
+    EXPECT_EQ(3, month.getDays());
+    for (int i = 1; i < 4; i++) {
+        EXPECT_EQ(i, month.getReservationDay(i)->getNumberDay());
     }
 }
 
@@ -24,15 +22,15 @@ TEST(TestMonth, testAssignedDay) {
     Month month(3, 3);
     // osetrit 0
     month.bookingRoomToDay(3, room);
-    std::vector<DayReservation> days = month.getDays();
 
-    for (int i = 0; i < 2; i++) {
-        EXPECT_TRUE(days.at(i).isReservationEmpty());
+
+    for (int i = 1; i < 3; i++) {
+        EXPECT_TRUE(month.getReservationDay(i)->isReservationEmpty());
     }
 
-    EXPECT_EQ(3, days.size());
-    EXPECT_EQ(3, days[2].getNumberDay());
-    const std::vector<Room*> * rooms = days.at(2).getReserveRooms();
+    EXPECT_EQ(3, month.getDays());
+    EXPECT_EQ(3, month.getReservationDay(3)->getNumberDay());
+    const std::vector<Room*> * rooms = month.getReservationDay(3)->getReserveRooms();
     EXPECT_EQ(1, rooms->size());
 
     Room *room1 = rooms->at(0);

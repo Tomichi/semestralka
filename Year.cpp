@@ -33,3 +33,7 @@ const bool Year::isLeapYear() const {
     return (this->year % 4 == 0 && this->year % 100 != 0)
            || (this->year % 400 == 0 && this->year % 4000 != 0);
 }
+
+Month * Year::getMonth(const int month) {
+    return &(this->months.at(month - 1));
+}

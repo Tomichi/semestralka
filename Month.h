@@ -8,17 +8,17 @@
 class Month {
     private:
         int month;
+        int daysInMonth;
         std::vector<DayReservation> days;
         void generateDays(const int);
     public:
-
         Month(const int, const int);
         ~Month();
         const int getMonthNumber() const;
-        std::vector<DayReservation> &getDays();
-
+        const int getDays() const;
         void bookingRoomToDay(const int, Room &);
         const std::vector<Room*> * getRoomsFromDays(const int day) const;
+        DayReservation * getReservationDay(const int);
 };
 
 
