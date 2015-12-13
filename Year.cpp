@@ -14,7 +14,7 @@ const int Year::getYearNumber() const {
     return this->year;
 }
 
-const std::vector<Month> &Year::getMonths() const {
+std::vector<Month> &Year::getMonths() {
     return this->months;
 }
 

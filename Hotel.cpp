@@ -20,6 +20,6 @@ const bool Hotel::compareRoomsById(Room & room1, Room & room2) {
     return room1.getId() < room2.getId();
 }
 
-const std::vector<Room> & Hotel::getRooms() const {
+std::vector<Room> & Hotel::getRooms() {
     return this->database;
 }

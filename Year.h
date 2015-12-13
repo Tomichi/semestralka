@@ -14,7 +14,7 @@ class Year {
         Year(const int);
         ~Year();
         const int getYearNumber() const;
-        const std::vector<Month> & getMonths() const;
+        std::vector<Month> & getMonths();
         void generateMonths();
 
 };

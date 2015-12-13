@@ -2,7 +2,10 @@
 #define SEMESTRALKA_DAYRESERVATION_H
 
 #include "Room.h"
+#include "DayReservationException.h"
+#include <string>
 #include <vector>
+#include <algorithm>
 
 class DayReservation {
     private:
@@ -15,6 +18,7 @@ class DayReservation {
         const std::vector<Room *> * getReserveRooms() const;
         void reserveDay(Room &);
         const bool isReservationEmpty() const;
+        bool isRoomAlreadyRegistered(Room &);
 };
 
 

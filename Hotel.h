@@ -14,7 +14,7 @@ class Hotel {
         ~Hotel();
         void pushRoomToDatabase(Room &);
         void sortRoomsById();
-        const std::vector<Room> & getRooms() const;
+        std::vector<Room> & getRooms();
         static const bool compareRoomsById(Room &, Room &);
 };
 

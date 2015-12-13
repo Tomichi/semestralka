@@ -1,5 +1,7 @@
 #include "../../DayReservation.h"
 #include "../../DayReservation.cpp"
+#include "../../DayReservation.h"
+#include "../../DayReservationException.cpp"
 #include "gtest/gtest.h"
 
 

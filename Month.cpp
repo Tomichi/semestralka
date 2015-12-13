@@ -16,8 +16,12 @@ void Month::generateDays(const int days) {
         this->days.push_back(day);
     }
 }
-const std::vector<DayReservation> & Month::getDays() const {
+std::vector<DayReservation> & Month::getDays() {
     return this->days;
+}
+
+const std::vector<Room*> * Month::getRoomsFromDays(const int day) const {
+    return this->days.at(day - 1).getReserveRooms();
 }
 
 const int Month::getMonthNumber() const {
@@ -28,6 +32,6 @@ void Month::bookingRoomToDay(const int day, Room & room) {
     if (day > this->days.size() || day < 1) {
 
     } else {
-        this->days[day - 1].reserveDay(room);
+        this->days.at(day - 1).reserveDay(room);
     }
 }

@@ -4,7 +4,7 @@
 
 TEST(TestYear, testLeapYear) {
     Year leapYear(2012);
-    const std::vector<Month> months = leapYear.getMonths();
+    std::vector<Month> months = leapYear.getMonths();
     EXPECT_EQ(12, months.size());
     for (int i = 0; i < 12; i++) {
         if (i == 1) {
@@ -17,7 +17,7 @@ TEST(TestYear, testLeapYear) {
 
 TEST(TestYear, testNoLeapYear) {
     Year leapYear(2015);
-    const std::vector<Month> months = leapYear.getMonths();
+    std::vector<Month> months = leapYear.getMonths();
     EXPECT_EQ(12, months.size());
     for (int i = 0; i < 12; i++) {
         EXPECT_EQ(daysInMonths[i], months[i].getDays().size());
