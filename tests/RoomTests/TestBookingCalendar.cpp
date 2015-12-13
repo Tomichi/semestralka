@@ -10,13 +10,12 @@
 TEST(TestBookingCalendar, testBasicUsage) {
     BookingCalendar calendar(2015);
     calendar.generateNextYear(2016);
-    std::vector<Year> years = calendar.getYears();
-    Year * actualYear = &(years.at(0));
+    Year * actualYear = calendar.getYear(2015);
     for (int i = 0; i < 12; i++) {
         EXPECT_EQ(daysInMonths[i], actualYear->getMonth(i + 1)->getDays());
     }
 
-    actualYear = & (years.at(1));
+    actualYear = calendar.getYear(2016);
     for (int i = 0; i < 12; i++) {
         if (i == 1) {
             EXPECT_EQ(daysInMonths[i] + 1, actualYear->getMonth(i + 1)->getDays());
@@ -80,22 +79,26 @@ TEST(TestBookingCalendar, testAvailableRoomInDay) {
         Room R1(i + 1, i + 20, i+300, i+400, i+405);
         hotels.pushRoomToDatabase(R1);
     }
-    EXPECT_EQ(count, hotels.getRooms().size());
+
+    std::vector<Room> * rooms = hotels.getRooms();
+    EXPECT_EQ(count, rooms->size());
 
     BookingCalendar calendar(2015);
-    calendar.reserveRoom(hotels.getRooms().at(2), 2015, 12, 14);
-    calendar.reserveRoom(hotels.getRooms().at(3), 2015, 12, 14);
+    calendar.reserveRoom(rooms->at(2), 2015, 12, 14);
+    calendar.reserveRoom(rooms->at(3), 2015, 12, 14);
 
     std::vector<Room> result = calendar.findFreeRoomInDay(hotels, 2015, 12, 14);
     EXPECT_EQ(2, result.size());
 
     for (int i = 0; i < 2; i++) {
-        EXPECT_EQ(hotels.getRooms().at(i).getId(), result.at(i).getId());
-        EXPECT_EQ(hotels.getRooms().at(i).getCapacity(), result.at(i).getCapacity());
-        EXPECT_EQ(hotels.getRooms().at(i).getPrize(), result.at(i).getPrize());
-        EXPECT_EQ(hotels.getRooms().at(i).getRoomLocation().getFloor(), result.at(i).getRoomLocation().getFloor());
-        EXPECT_EQ(hotels.getRooms().at(i).getRoomLocation().getDoor(), result.at(i).getRoomLocation().getDoor());
+
+        EXPECT_EQ(rooms->at(i).getId(), result.at(i).getId());
+        EXPECT_EQ(rooms->at(i).getCapacity(), result.at(i).getCapacity());
+        EXPECT_EQ(rooms->at(i).getPrize(), result.at(i).getPrize());
+        EXPECT_EQ(rooms->at(i).getRoomLocation().getFloor(), result.at(i).getRoomLocation().getFloor());
+        EXPECT_EQ(rooms->at(i).getRoomLocation().getDoor(), result.at(i).getRoomLocation().getDoor());
     }
 
-    EXPECT_EQ(count, hotels.getRooms().size());
+    EXPECT_EQ(count, rooms->size());
+    rooms = NULL;
 }

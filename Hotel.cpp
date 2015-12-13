@@ -1,7 +1,6 @@
 #include "Hotel.h"
 
-Hotel::Hotel() {
-}
+Hotel::Hotel() { }
 
 Hotel::~Hotel() {
     this->database.clear();
@@ -20,6 +19,6 @@ const bool Hotel::compareRoomsById(Room & room1, Room & room2) {
     return room1.getId() < room2.getId();
 }
 
-std::vector<Room> & Hotel::getRooms() {
-    return this->database;
+std::vector<Room> * Hotel::getRooms() {
+    return &(this->database);
 }

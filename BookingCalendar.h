@@ -11,13 +11,14 @@ class BookingCalendar {
         std::vector<Year> years;
         void addYear(const int);
         void generateNextYearIsPossible(const int );
-    public:
+        DayReservation * getDayByDate(const int, const int, const int);
+public:
         BookingCalendar(const int);
         ~BookingCalendar();
-        void generateNextYear(const int);
-        const std::vector<Year> & getYears() const;
+        void generateNextYear(const int); // must be private !!!
         void reserveRoom(Room &, const int, const int, const int);
         const std::vector<Room*> * getRoomReservationByDate(const int, const int, const int);
+        Year * getYear(const int);
         std::vector<Room> findFreeRoomInDay(Hotel &, const int, const int, const int);
         std::vector<Room> findFreeRoomInDayByPrize(Hotel &, const int, const int, const int, const int);
 };

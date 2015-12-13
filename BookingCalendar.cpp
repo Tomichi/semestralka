@@ -18,17 +18,13 @@ void BookingCalendar::addYear(const int year) {
     this->years.push_back(newYear);
 }
 
-const std::vector<Year> & BookingCalendar::getYears() const {
-    return this->years;
-}
-
 void BookingCalendar::generateNextYearIsPossible(const int year) {
     bool isOneYearInCalendar = this->years.size() == 1;
     bool isNextYearEqualNextYear = this->years.at(0).getYearNumber() + 1 == year;
     if (isOneYearInCalendar && isNextYearEqualNextYear) {
         this->generateNextYear(year);
     } else {
-        //std::count << "Year is over"; // throw exception
+        //throw "Year is out of range"; //exception must see
         return;
     }
 }
@@ -36,64 +32,87 @@ void BookingCalendar::generateNextYearIsPossible(const int year) {
 void BookingCalendar::reserveRoom(Room &room, const int year, const int month, const int day) {
     // validate year atd ... month > 0 && month < 13
     this->generateNextYearIsPossible(year);
-    for(int i = 0; i < this->years.size(); i++) {
-        if (this->years.at(i).getYearNumber() != year) continue;
-        this->years.at(i).getMonths().at(month - 1).bookingRoomToDay(day, room);
-    }
+    DayReservation * dayReservation = this->getDayByDate(year, month, day);
+    dayReservation->reserveDay(room);
+    dayReservation = NULL;
 }
 
 
 const std::vector<Room*> * BookingCalendar::getRoomReservationByDate(const int year, const int month, const int day) {
-    for(int i = 0; i < this->years.size(); i++){
-        if (this->years.at(i).getYearNumber() != year) continue;
-        return this->years.at(i).getMonths().at(month - 1).getRoomsFromDays(day);
+    // validate year atd ... mont
+    DayReservation * dayReservation = this->getDayByDate(year, month, day);
+
+    return dayReservation->getReserveRooms();
+
+}
+
+
+Year * BookingCalendar::getYear(const int year) {
+    const int startYearInPositionCalendar = this->years.at(0).getYearNumber();
+    const int countYearsInCalendar = this->years.size();
+    if (year < startYearInPositionCalendar) {
+        // throw exception
+        throw "Year in last period";
     }
 
-    return NULL; // exception
+    int yearDiff = startYearInPositionCalendar - year;
+    if (yearDiff > countYearsInCalendar) {
+        // throw exception
+        throw "Year is not in calendar";
+    }
+
+    Year * result = NULL;
+    for(int i = 0; i < countYearsInCalendar; i++) {
+        if (year != this->years.at(i).getYearNumber()) continue;
+        result =  &(this->years.at(i));
+    }
+
+    return result;
+
 }
 
-/*
-Year * BookingCalendar::getYear(const int year) {
-    int startPositionCalendar = this->year;
+DayReservation * BookingCalendar::getDayByDate(const int year, const int month, const int day) {
+    // test validate date
+    Year * actualYear = this->getYear(year);
+    Month * actualMonth = actualYear->getMonth(month);
+    DayReservation * actualDay = actualMonth->getReservationDay(day);
+
+    actualYear = NULL;
+    actualMonth = NULL;
+
+    return actualDay;
 }
- */
 
 std::vector<Room> BookingCalendar::findFreeRoomInDay(Hotel & hotel, const int year, const int month, const int day) {
     // control if it date valid
     std::vector<Room> resultVec;
-    std::vector<Room> *rooms = &(hotel.getRooms());
-    Year * actualYear = &(this->years.at(0));
-    Month * actualMonth = actualYear->getMonth(month);
-
-    DayReservation * actualDay = actualMonth->getReservationDay(day);
+    std::vector<Room> *rooms = hotel.getRooms();
+    DayReservation * actualDay = this->getDayByDate(year, month, day);
     for (int i = 0; i < rooms->size(); i++) {
             if(actualDay->isRoomAlreadyRegistered(rooms->at(i)) == false) {
-                resultVec.push_back(hotel.getRooms().at(i));
+                resultVec.push_back(rooms->at(i));
             }
     }
-    rooms = NULL;
-    actualMonth = NULL;
+
     actualDay = NULL;
+    rooms = NULL;
+
     return resultVec;
 }
 
 std::vector<Room> BookingCalendar::findFreeRoomInDayByPrize(Hotel & hotel, const int prize, const int year, const int month, const int day) {
+    // control if it date valit
     std::vector<Room> resultVec;
-    std::vector<Room> *rooms = &(hotel.getRooms());
-    Year * actualYear = &(this->years.at(0));
-    Month * actualMonth = actualYear->getMonth(month);
-
-    DayReservation * actualDay = actualMonth->getReservationDay(day);
+    std::vector<Room> *rooms = hotel.getRooms();
+    DayReservation * actualDay = this->getDayByDate(year, month, day);
     for (int i = 0; i < rooms->size(); i++) {
-        if (hotel.getRooms().at(i).getPrize() > prize) continue;
+        if (rooms->at(i).getPrize() > prize) continue;
         if(actualDay->isRoomAlreadyRegistered(rooms->at(i)) == false) {
-            resultVec.push_back(hotel.getRooms().at(i));
+            resultVec.push_back(rooms->at(i));
         }
     }
-    rooms = NULL;
-    actualMonth = NULL;
     actualDay = NULL;
+    rooms = NULL;
+
     return resultVec;
-
-
 }

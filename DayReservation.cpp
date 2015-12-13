@@ -18,7 +18,7 @@ void DayReservation::reserveDay(Room &room) {
     this->booking.push_back(&room);
 }
 
-const std::vector<Room *> *DayReservation::getReserveRooms() const {
+const std::vector<Room *> * DayReservation::getReserveRooms() const {
     return &(this->booking);
 }
 
