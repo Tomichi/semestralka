@@ -19,8 +19,8 @@ public:
         void reserveRoom(Room &, const int, const int, const int);
         const std::vector<Room*> * getRoomReservationByDate(const int, const int, const int);
         Year * getYear(const int);
-        std::vector<Room> findFreeRoomInDay(Hotel &, const int, const int, const int);
-        std::vector<Room> findFreeRoomInDayByPrize(Hotel &, const int, const int, const int, const int);
+        void findFreeRoomInDay(Hotel &, const int, const int, const int, std::vector<Room> &);
+        void findFreeRoomInDayByPrize(Hotel &, const int, const int, const int, const int, std::vector<Room> &);
 };
 
 

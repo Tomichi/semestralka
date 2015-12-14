@@ -83,36 +83,31 @@ DayReservation * BookingCalendar::getDayByDate(const int year, const int month, 
     return actualDay;
 }
 
-std::vector<Room> BookingCalendar::findFreeRoomInDay(Hotel & hotel, const int year, const int month, const int day) {
+void BookingCalendar::findFreeRoomInDay(Hotel & hotel, const int year, const int month, const int day,
+                                                       std::vector<Room> &result) {
     // control if it date valid
-    std::vector<Room> resultVec;
     std::vector<Room> *rooms = hotel.getRooms();
     DayReservation * actualDay = this->getDayByDate(year, month, day);
     for (int i = 0; i < rooms->size(); i++) {
             if(actualDay->isRoomAlreadyRegistered(rooms->at(i)) == false) {
-                resultVec.push_back(rooms->at(i));
+                result.push_back(rooms->at(i));
             }
     }
 
     actualDay = NULL;
     rooms = NULL;
-
-    return resultVec;
 }
 
-std::vector<Room> BookingCalendar::findFreeRoomInDayByPrize(Hotel & hotel, const int prize, const int year, const int month, const int day) {
+void BookingCalendar::findFreeRoomInDayByPrize(Hotel & hotel, const int prize, const int year, const int month, const int day, std::vector<Room> &result) {
     // control if it date valit
-    std::vector<Room> resultVec;
     std::vector<Room> *rooms = hotel.getRooms();
     DayReservation * actualDay = this->getDayByDate(year, month, day);
     for (int i = 0; i < rooms->size(); i++) {
         if (rooms->at(i).getPrize() > prize) continue;
         if(actualDay->isRoomAlreadyRegistered(rooms->at(i)) == false) {
-            resultVec.push_back(rooms->at(i));
+            result.push_back(rooms->at(i));
         }
     }
     actualDay = NULL;
     rooms = NULL;
-
-    return resultVec;
 }

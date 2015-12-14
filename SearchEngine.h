@@ -7,11 +7,8 @@
 struct SearchResult {
     public:
         SearchResult(const bool, const int);
-
         ~SearchResult();
-
         const bool getFound() const;
-
         const int getIndex() const;
 
     private:
@@ -22,9 +19,7 @@ struct SearchResult {
     class SearchEngine {
     public:
         SearchEngine();
-
         ~SearchEngine();
-
         static SearchResult findRoomInHotels(std::vector<Room> &, const int);
 };
 

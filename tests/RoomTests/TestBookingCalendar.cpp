@@ -7,6 +7,15 @@
 #include <vector>
 #include "gtest/gtest.h"
 
+
+void compareRoom(Room & room1, Room & room2) {
+    EXPECT_EQ(room1.getId(), room2.getId());
+    EXPECT_EQ(room1.getCapacity(), room2.getCapacity());
+    EXPECT_EQ(room1.getPrize(), room2.getPrize());
+    EXPECT_EQ(room1.getRoomLocation().getDoor(), room2.getRoomLocation().getDoor());
+    EXPECT_EQ(room1.getRoomLocation().getFloor(), room2.getRoomLocation().getFloor());
+}
+
 TEST(TestBookingCalendar, testBasicUsage) {
     BookingCalendar calendar(2015);
     calendar.generateNextYear(2016);
@@ -87,18 +96,15 @@ TEST(TestBookingCalendar, testAvailableRoomInDay) {
     calendar.reserveRoom(rooms->at(2), 2015, 12, 14);
     calendar.reserveRoom(rooms->at(3), 2015, 12, 14);
 
-    std::vector<Room> result = calendar.findFreeRoomInDay(hotels, 2015, 12, 14);
+    std::vector<Room> result;
+    calendar.findFreeRoomInDay(hotels, 2015, 12, 14, result);
     EXPECT_EQ(2, result.size());
 
     for (int i = 0; i < 2; i++) {
-
-        EXPECT_EQ(rooms->at(i).getId(), result.at(i).getId());
-        EXPECT_EQ(rooms->at(i).getCapacity(), result.at(i).getCapacity());
-        EXPECT_EQ(rooms->at(i).getPrize(), result.at(i).getPrize());
-        EXPECT_EQ(rooms->at(i).getRoomLocation().getFloor(), result.at(i).getRoomLocation().getFloor());
-        EXPECT_EQ(rooms->at(i).getRoomLocation().getDoor(), result.at(i).getRoomLocation().getDoor());
+        compareRoom(rooms->at(i), result.at(i));
     }
-
+    result.clear();
     EXPECT_EQ(count, rooms->size());
     rooms = NULL;
+
 }

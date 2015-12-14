@@ -13,6 +13,8 @@ TEST(TestYear, testLeapYear) {
             EXPECT_EQ(daysInMonths[i], actualMonth->getDays());
         }
     }
+
+    actualMonth = NULL;
 }
 
 TEST(TestYear, testNoLeapYear) {
