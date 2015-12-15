@@ -106,3 +106,18 @@ void BookingCalendar::findFreeRoomInDayByPrize(Hotel & hotel, const int prize, c
     actualDay = NULL;
     rooms = NULL;
 }
+
+
+void BookingCalendar::findFreeRoomInDayByCapacity(Hotel & hotel, const int capacity, const int year, const int month, const int day, std::vector<Room> &result) {
+    DateValidator::validateDate(year, month, day);
+    std::vector<Room> *rooms = hotel.getRooms();
+    DayReservation * actualDay = this->getDayByDate(year, month, day);
+    for (int i = 0; i < rooms->size(); i++) {
+        if (rooms->at(i).getCapacity() > capacity) continue;
+        if(actualDay->isRoomAlreadyRegistered(rooms->at(i)) == false) {
+            result.push_back(rooms->at(i));
+        }
+    }
+    actualDay = NULL;
+    rooms = NULL;
+}

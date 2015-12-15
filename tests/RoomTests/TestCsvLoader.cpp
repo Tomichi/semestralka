@@ -1,9 +1,9 @@
 #include "../../Hotel.h"
 #include "../../BookingCalendar.h"
 #include "../../Room.h"
-#include "gtest/gtest.h"
 #include "../../CSVLoader.h"
 #include "../../CSVLoader.cpp"
+#include "gtest/gtest.h"
 
 void TestRoom(Room &room, int id, int capacity, int prize, int floor, int door) {
 

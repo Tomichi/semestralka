@@ -4,7 +4,6 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <cstring>
 #include "Hotel.h"
 #include "BookingCalendar.h"
 #include "RoomValidatorException.h"

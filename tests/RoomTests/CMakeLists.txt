@@ -13,6 +13,7 @@ add_executable(runRoomTest
         TestYear.cpp
         TestBookingCalendar.cpp
         TestCsvLoader.cpp
+        TestCsvLoadError.cpp
         )
 
 target_link_libraries(runRoomTest gtest gtest_main)

@@ -22,6 +22,7 @@ public:
         Year * getYear(const int);
         void findFreeRoomInDay(Hotel &, const int, const int, const int, std::vector<Room> &);
         void findFreeRoomInDayByPrize(Hotel &, const int, const int, const int, const int, std::vector<Room> &);
+        void findFreeRoomInDayByCapacity(Hotel &, const int, const int, const int, const int, std::vector<Room> &);
 };
 
 
