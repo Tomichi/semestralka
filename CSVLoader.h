@@ -4,14 +4,15 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <cstring>
 #include "Hotel.h"
 #include "BookingCalendar.h"
+#include "RoomValidatorException.h"
 #include "Room.h"
 
 class CSVLoader {
     private:
-        std::ifstream ifs;
-        char * source;
+        std::string file;
     public:
         CSVLoader(const char *);
         ~CSVLoader();

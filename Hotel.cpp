@@ -63,3 +63,7 @@ void Hotel::roomValidate(const int index) {
         throw DuplicateIdRoomException("Room with id#" + std::to_string(index) + " is duplicate.");
     }
 }
+
+Room & Hotel::getRoomByIndex(const int index) {
+    return this->database.at(index);
+}

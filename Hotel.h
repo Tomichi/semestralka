@@ -33,6 +33,7 @@ class Hotel {
         bool isIdRoomDuplicate(const int index);
         void roomValidate(const int);
         SearchResult findRoomInHotels(const int);
+        Room & getRoomByIndex(const int);
 };
 
 
