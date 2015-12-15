@@ -1,6 +1,10 @@
 #include "../../BookingCalendar.h"
 #include "../../BookingCalendar.cpp"
 #include "../../DayReservationException.h"
+#include "../../DateValidator.h"
+#include "../../DateValidator.cpp"
+#include "../../DateValidatorException.h"
+#include "../../DateValidatorException.cpp"
 #include "../../Year.h"
 #include "../../Hotel.h"
 #include "../../Room.h"
@@ -81,7 +85,6 @@ TEST(TestBookingCalendar, testDuplicateReservation) {
 
 
 TEST(TestBookingCalendar, testAvailableRoomInDay) {
-
     Hotel hotels;
     int count = 4;
     for (int i = 0; i < count; i++){
@@ -106,5 +109,32 @@ TEST(TestBookingCalendar, testAvailableRoomInDay) {
     result.clear();
     EXPECT_EQ(count, rooms->size());
     rooms = NULL;
+}
 
+
+TEST(TestBookingCalendar, testAvaliableRoomInDayBoundByPrize) {
+    Hotel hotels;
+    int count = 4;
+    for (int i = 0; i < count; i++){
+        Room R1(i + 1, i + 20, (i+1) * 30, i+400, i+405);
+        hotels.pushRoomToDatabase(R1);
+    }
+
+    std::vector<Room> * rooms = hotels.getRooms();
+    EXPECT_EQ(count, rooms->size());
+
+    BookingCalendar calendar(2015);
+    calendar.reserveRoom(rooms->at(2), 2015, 12, 14);
+    calendar.reserveRoom(rooms->at(3), 2015, 12, 14);
+
+    std::vector<Room> result;
+    calendar.findFreeRoomInDayByPrize(hotels, 70, 2015, 12, 14, result);
+    EXPECT_EQ(2, result.size());
+
+    for (int i = 0; i < 2; i++) {
+        compareRoom(rooms->at(i), result.at(i));
+    }
+    result.clear();
+    EXPECT_EQ(count, rooms->size());
+    rooms = NULL;
 }

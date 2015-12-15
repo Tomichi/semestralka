@@ -6,7 +6,7 @@ Year::Year(const int year) {
     this->generateMonths();
 }
 
-Year::~Year() {
+Year::~ Year() {
     this->months.clear();
 }
 
@@ -32,6 +32,11 @@ void Year::generateMonths() {
 const bool Year::isLeapYear() const {
     return (this->year % 4 == 0 && this->year % 100 != 0)
            || (this->year % 400 == 0 && this->year % 4000 != 0);
+}
+
+bool Year::isLeapYear(const int currentYear) {
+    return (currentYear % 4 == 0 && currentYear % 100 != 0)
+           || (currentYear % 400 == 0 && currentYear % 4000 != 0);
 }
 
 Month * Year::getMonth(const int month) {

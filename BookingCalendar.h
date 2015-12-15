@@ -4,6 +4,7 @@
 #include "Hotel.h"
 #include "Room.h"
 #include "DayReservation.h"
+#include "DateValidator.h"
 #include <vector>
 
 class BookingCalendar {

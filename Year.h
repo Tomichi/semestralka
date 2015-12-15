@@ -10,14 +10,14 @@ class Year {
         int year;
         std::vector<Month> months;
         const bool isLeapYear() const;
-    public:
+public:
         Year(const int);
         ~Year();
         const int getYearNumber() const;
         std::vector<Month> & getMonths();
         Month * getMonth(const int);
         void generateMonths();
-
+        static bool isLeapYear(const int);
 };
 
 
