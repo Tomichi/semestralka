@@ -28,7 +28,7 @@ const int Month::getMonthNumber() const {
 
 void Month::bookingRoomToDay(const int day, Room & room) {
     if (day > this->days.size() || day < 1) {
-
+        throw "Is not posible to register to dat which doesnt exist.";
     } else {
         this->days.at(day - 1).reserveDay(room);
     }

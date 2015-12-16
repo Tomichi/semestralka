@@ -14,12 +14,10 @@ class HtmlExport
         void writeHtmlTableHead(std::ofstream &, const int);
         void writeHtmlTableFoot(std::ofstream &);
         void writeHtmlTableRow(std::ofstream &, std::string &);
-        bool validateHtmlSufix();
-    public:
+public:
         HtmlExport(std::string);
         ~HtmlExport();
-        void export(std::vector<string> &, const int);
-
+        void flush(std::vector<std::string> &, const int);
 };
 
 

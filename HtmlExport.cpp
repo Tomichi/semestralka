@@ -37,9 +37,6 @@ void HtmlExport::writeHtmlTableRow(std::ofstream & htmlFile, std::string & date)
     htmlFile << "<tr><td>" + date + "<td></tr>";
 }
 
-bool HtmlExport::validateHtmlSufix(std::string &fileName) {
-    return  true;
-}
 
 HtmlExport::HtmlExport(std::string filename) {
     this->outputFile = filename;
@@ -49,15 +46,15 @@ HtmlExport::~HtmlExport() {
     this->outputFile = "";
 }
 
-void HtmlExport::export(std::vector<string> &date, const int id) {
-    ofstream ofs(this->outputFile);
+void HtmlExport::flush(std::vector<std::string> &date, const int id) {
+    std::ofstream ofs(this->outputFile);
     this->writeHtmlHeader(ofs);
-    this->writeHtmlTableHead(ofs);
+    this->writeHtmlTableHead(ofs, id);
     int size = (int) date.size();
     for (int i = 0; i < size; i++) {
         this->writeHtmlTableRow(ofs, date.at(i));
     }
     this->writeHtmlTableFoot(ofs);
-    this->writeHtmlTableFoot(ofs);
+    this->writeHtmlFooter(ofs);
     ofs.close();
 }

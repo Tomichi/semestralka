@@ -9,6 +9,7 @@
 #include "../../Hotel.h"
 #include "../../Room.h"
 #include <vector>
+#include <string>
 #include "gtest/gtest.h"
 
 
@@ -137,4 +138,24 @@ TEST(TestBookingCalendar, testAvaliableRoomInDayBoundByPrize) {
     result.clear();
     EXPECT_EQ(count, rooms->size());
     rooms = NULL;
+}
+
+TEST(TestBookingCalendar, testFindRoomInTwoDate) {
+    std::vector<std::string> date;
+    BookingCalendar calendar(2015);
+    Hotel hotel;
+    for (int i = 0; i < 4; i++) {
+        Room room(1+i, 5*(i+1), 200, 4, 405);
+        hotel.pushRoomToDatabase(room);
+    }
+
+    calendar.reserveRoom(hotel.getRoomByIndex(0), 2015, 12, 12);
+    calendar.reserveRoom(hotel.getRoomByIndex(1), 2015, 12, 12);
+    calendar.reserveRoom(hotel.getRoomByIndex(2), 2015, 12, 12);
+    calendar.reserveRoom(hotel.getRoomByIndex(1), 2015, 12, 14);
+    calendar.reserveRoom(hotel.getRoomByIndex(1), 2015, 12, 16);
+    calendar.reserveRoom(hotel.getRoomByIndex(0), 2015, 12, 15);
+
+    calendar.findRoomByDateRange(hotel.getRoomByIndex(1), 2015, 12, 10, 2015, 12, 20, date);
+    EXPECT_EQ(3, date.size());
 }

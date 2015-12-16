@@ -23,6 +23,7 @@ public:
         void findFreeRoomInDay(Hotel &, const int, const int, const int, std::vector<Room> &);
         void findFreeRoomInDayByPrize(Hotel &, const int, const int, const int, const int, std::vector<Room> &);
         void findFreeRoomInDayByCapacity(Hotel &, const int, const int, const int, const int, std::vector<Room> &);
+        void findRoomByDateRange(Room & ,const int, const int, const int, const int, const int, const int, std::vector<std::string> &);
 };
 
 

@@ -19,6 +19,6 @@ set(SOURCE_FILES main.cpp
         RoomValidator.cpp RoomValidator.h
         RoomValidatorException.cpp RoomValidatorException.h
         Year.cpp Year.h
+        HtmlExport.cpp HtmlExport.h
         )
 add_executable(semestralka ${SOURCE_FILES})
-add_subdirectory(tests)
