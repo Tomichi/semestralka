@@ -22,3 +22,4 @@ set(SOURCE_FILES main.cpp
         HtmlExport.cpp HtmlExport.h
         )
 add_executable(semestralka ${SOURCE_FILES})
+add_subdirectory(tests)

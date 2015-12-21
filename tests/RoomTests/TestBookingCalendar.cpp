@@ -21,51 +21,6 @@ void compareRoom(Room & room1, Room & room2) {
     EXPECT_EQ(room1.getRoomLocation().getFloor(), room2.getRoomLocation().getFloor());
 }
 
-TEST(TestBookingCalendar, testBasicUsage) {
-    BookingCalendar calendar(2015);
-    calendar.generateNextYear(2016);
-    Year * actualYear = calendar.getYear(2015);
-    for (int i = 0; i < 12; i++) {
-        EXPECT_EQ(daysInMonths[i], actualYear->getMonth(i + 1)->getDays());
-    }
-
-    actualYear = calendar.getYear(2016);
-    for (int i = 0; i < 12; i++) {
-        if (i == 1) {
-            EXPECT_EQ(daysInMonths[i] + 1, actualYear->getMonth(i + 1)->getDays());
-        } else {
-            EXPECT_EQ(daysInMonths[i], actualYear->getMonth(i + 1)->getDays());
-        }
-    }
-    actualYear = NULL;
-}
-
-
-TEST(TestBookingCalendar, testReserveRoom) {
-    BookingCalendar calendar(2015);
-    Room R1(1, 20, 300, 400, 405), R2(2, 15, 200, 300, 302);
-    calendar.reserveRoom(R1, 2015, 12, 12);
-    calendar.reserveRoom(R2, 2016, 1, 2);
-    const std::vector<Room *> *rooms1 = calendar.getRoomReservationByDate(2015, 12, 12);
-    const std::vector<Room *> *rooms2 = calendar.getRoomReservationByDate(2016, 1, 2);
-    const std::vector<Room *> *rooms3 = calendar.getRoomReservationByDate(2016, 2, 2);
-    EXPECT_EQ(1, rooms1->size());
-    EXPECT_EQ(1, rooms2->size());
-    EXPECT_EQ(0, rooms3->size());
-
-    EXPECT_EQ(R1.getId(), rooms1->at(0)->getId());
-    EXPECT_EQ(R1.getCapacity(), rooms1->at(0)->getCapacity());
-    EXPECT_EQ(R1.getPrize(), rooms1->at(0)->getPrize());
-    EXPECT_EQ(R1.getRoomLocation().getDoor(), rooms1->at(0)->getRoomLocation().getDoor());
-    EXPECT_EQ(R1.getRoomLocation().getFloor(), rooms1->at(0)->getRoomLocation().getFloor());
-
-    EXPECT_EQ(R2.getId(), rooms2->at(0)->getId());
-    EXPECT_EQ(R2.getCapacity(), rooms2->at(0)->getCapacity());
-    EXPECT_EQ(R2.getPrize(), rooms2->at(0)->getPrize());
-    EXPECT_EQ(R2.getRoomLocation().getDoor(), rooms2->at(0)->getRoomLocation().getDoor());
-    EXPECT_EQ(R2.getRoomLocation().getFloor(), rooms2->at(0)->getRoomLocation().getFloor());
-}
-
 
 TEST(TestBookingCalendar, testDuplicateReservation) {
     BookingCalendar calendar(2015);
@@ -78,10 +33,6 @@ TEST(TestBookingCalendar, testDuplicateReservation) {
         ASSERT_STREQ("Room with id#2 is already registered in day#13", err.what());
     }
 
-    const std::vector<Room *> *rooms1 = calendar.getRoomReservationByDate(2015, 12, 13);
-
-
-    EXPECT_EQ(2, rooms1->size());
 }
 
 

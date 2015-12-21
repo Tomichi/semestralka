@@ -32,17 +32,6 @@ TEST_F(TestHotel, testBasicGetRooms) {
     tmpRoomDatabase = NULL;
 }
 
-TEST_F(TestHotel, testBasicSort) {
-    this->hotel->sortRoomsById();
-    std::vector<Room> * tmpRoomDatabase = this->hotel->getRooms();
-
-    int i = 1;
-    for(std::vector<Room>::iterator it = tmpRoomDatabase->begin(); it != tmpRoomDatabase->end(); it++, i++) {
-        EXPECT_EQ(i, it->getId());
-    }
-    tmpRoomDatabase = NULL;
-}
-
 
 
 

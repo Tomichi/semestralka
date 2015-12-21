@@ -24,14 +24,3 @@ protected:
         }
     }
 };
-
-TEST_F(TestDayReservation, testDestructor) {
-    DayReservation dayReservation(1);
-    for (int i = 0; i < this->roomCount; i++) {
-        dayReservation.reserveDay(this->rooms[i]);
-    }
-
-    const std::vector<Room *> *result = dayReservation.getReserveRooms();
-    EXPECT_EQ(this->roomCount, result->size());
-    result = NULL;
-}
