@@ -7,7 +7,9 @@ compiler:
   - gcc
 
 script:
-  - cd build
-  - mkdir build
-  - cmake .. && make
+- mkdir build
+- cd build
+- cmake .. && make
+- cd tests
+- ./runTest
 
