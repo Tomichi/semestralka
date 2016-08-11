@@ -4,7 +4,10 @@ language: c++
 # Compiler selection
 compiler:
   - clang
-  - gcc
+
+os:
+- linux
+- osx
 
 script:
 - mkdir build
