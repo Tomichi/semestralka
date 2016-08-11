@@ -8,5 +8,6 @@ compiler:
 
 script:
   - cd build
-  - cmake . && make
+  - mkdir build
+  - cmake .. && make
 
