@@ -1,5 +1,5 @@
-#include "../../Year.h"
-#include "../../Year.cpp"
+#include "../../src/calendar/Year.h"
+#include "../../src/calendar/Year.cpp"
 #include "gtest/gtest.h"
 
 TEST(TestYear, testLeapYear) {

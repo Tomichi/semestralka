@@ -1,6 +1,6 @@
-#include "../../Room.h"
-#include "../../Room.cpp"
-#include "../../Hotel.h"
+#include "../../src/hotel/Room.h"
+#include "../../src/hotel/Room.cpp"
+#include "../../src/hotel/Hotel.h"
 #include "gtest/gtest.h"
 
 class TestSearchEngine : public ::testing::Test {

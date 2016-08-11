@@ -5,7 +5,7 @@
 #include <iterator>
 #include <algorithm>
 #include "Room.h"
-#include "HotelValidatorException.h"
+#include "../validators/HotelValidatorException.h"
 
 struct SearchResult {
 public:

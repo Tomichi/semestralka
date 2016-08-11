@@ -1,5 +1,5 @@
 #include "Room.h"
-#include "RoomValidator.h"
+#include "../validators/RoomValidator.h"
 
 RoomLocation::RoomLocation(const int floor, const int door) {
     this->floor = floor;

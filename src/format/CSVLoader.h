@@ -2,10 +2,10 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include "Hotel.h"
-#include "BookingCalendar.h"
-#include "RoomValidatorException.h"
-#include "Room.h"
+#include "../hotel/Hotel.h"
+#include "../calendar/BookingCalendar.h"
+#include "../validators/RoomValidatorException.h"
+#include "../hotel/Room.h"
 
 class CSVLoader {
 private:

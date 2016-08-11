@@ -1,5 +1,5 @@
-#include "../../Month.h"
-#include "../../Month.cpp"
+#include "../../src/calendar/Month.h"
+#include "../../src/calendar/Month.cpp"
 #include "gtest/gtest.h"
 
 TEST(TestMonth, testEmptyDays) {

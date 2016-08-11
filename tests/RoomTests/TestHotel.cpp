@@ -1,5 +1,5 @@
-#include "../../Hotel.h"
-#include "../../Hotel.cpp"
+#include "../../src/hotel/Hotel.h"
+#include "../../src/hotel/Hotel.cpp"
 #include "gtest/gtest.h"
 
 class TestHotel : public ::testing::Test {

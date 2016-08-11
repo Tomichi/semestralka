@@ -1,4 +1,4 @@
-#include "../../RoomValidator.h"
+#include "../../src/validators/RoomValidator.h"
 #include "gtest/gtest.h"
 
 TEST(TestValidator, valdiateId) {
