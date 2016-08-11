@@ -1,6 +1,6 @@
-#include "../../Room.h"
-#include "../../RoomValidatorException.cpp"
-#include "../../RoomValidator.cpp"
+#include "../../src/hotel/Room.h"
+#include "../../src/validators/RoomValidatorException.cpp"
+#include "../../src/validators/RoomValidator.cpp"
 #include "gtest/gtest.h"
 
 class TestRoom : public::testing::Test {

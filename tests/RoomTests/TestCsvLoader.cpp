@@ -1,11 +1,11 @@
-#include "../../Hotel.h"
-#include "../../BookingCalendar.h"
-#include "../../Room.h"
-#include "../../CSVLoader.h"
-#include "../../CSVLoader.cpp"
+#include "../../src/hotel/Hotel.h"
+#include "../../src/calendar/BookingCalendar.h"
+#include "../../src/hotel/Room.h"
+#include "../../src/format/CSVLoader.h"
+#include "../../src/format/CSVLoader.cpp"
 #include "gtest/gtest.h"
 
-void TestRoom(Room &room, int id, int capacity, int prize, int floor, int door) {
+/*void TestRoom(Room &room, int id, int capacity, int prize, int floor, int door) {
 
     EXPECT_EQ(id, room.getId());
     EXPECT_EQ(capacity, room.getCapacity());
@@ -52,4 +52,4 @@ TEST(TestCSVLoader, testparseCsvHotel) {
     freeRoom.clear();
 
 
-}
+}*/

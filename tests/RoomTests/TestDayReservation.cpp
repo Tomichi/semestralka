@@ -1,7 +1,7 @@
-#include "../../DayReservation.h"
-#include "../../DayReservation.cpp"
-#include "../../DayReservation.h"
-#include "../../DayReservationException.cpp"
+#include "../../src/calendar/DayReservation.h"
+#include "../../src/calendar/DayReservation.cpp"
+#include "../../src/calendar/DayReservation.h"
+#include "../../src/calendar/DayReservationException.cpp"
 #include "gtest/gtest.h"
 
 class TestDayReservation : public ::testing::Test {

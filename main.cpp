@@ -1,11 +1,11 @@
 #include <iostream>
 #include <vector>
-#include "Hotel.h"
-#include "BookingCalendar.h"
-#include "CSVLoader.h"
-#include "Room.h"
-#include "DateValidator.h"
-#include "HtmlExport.h"
+#include "src/hotel/Hotel.h"
+#include "src/calendar/BookingCalendar.h"
+#include "src/format/CSVLoader.h"
+#include "src/hotel/Room.h"
+#include "src/validators/DateValidator.h"
+#include "src/format/HtmlExport.h"
 
 void printMenu();
 

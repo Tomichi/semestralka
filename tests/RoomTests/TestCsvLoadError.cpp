@@ -1,9 +1,9 @@
-#include "../../Hotel.h"
-#include "../../CSVLoader.h"
+#include "../../src/hotel/Hotel.h"
+#include "../../src/format/CSVLoader.h"
 #include "gtest/gtest.h"
 
 
-TEST(TestCsvLoadError, testDuplicityId) {
+/*TEST(TestCsvLoadError, testDuplicityId) {
     Hotel hotel;
     CSVLoader loader("/Users/tomichi/ClionProjects/semestralka/tests/RoomTests/hotel2wrong.csv");
     try {
@@ -34,4 +34,4 @@ TEST(TestCsvLoadError, testTextInNumber) {
         ASSERT_STREQ("Parse csv error in file /Users/tomichi/ClionProjects/semestralka/tests/RoomTests/hotel4wrong.csv on line 2", ex.c_str());
 
     }
-}
+}*/

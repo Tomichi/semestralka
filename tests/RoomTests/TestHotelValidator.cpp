@@ -1,5 +1,5 @@
-#include "../../HotelValidatorException.cpp"
-#include "../../Hotel.h"
+#include "../../src/validators/HotelValidatorException.cpp"
+#include "../../src/hotel/Hotel.h"
 #include "gtest/gtest.h"
 
 class TestHotelValidator: public::testing::Test {

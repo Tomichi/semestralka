@@ -1,9 +1,9 @@
 #pragma once
 #include "Year.h"
-#include "Hotel.h"
-#include "Room.h"
+#include "../hotel/Hotel.h"
+#include "../hotel/Room.h"
 #include "DayReservation.h"
-#include "DateValidator.h"
+#include "../validators/DateValidator.h"
 #include <vector>
 
 class BookingCalendar {
