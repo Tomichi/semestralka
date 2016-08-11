@@ -1,17 +1,6 @@
-/**
- * @file    CSVLoader.cpp
- * @author  Tomáš Michna
- * @date    December, 2015
- * @bug     No known bugs.
- * @brief   Implementation of class CSVLoader
- *
- * This file contains implementation of CSVLoader class
- */
-
 #include "CSVLoader.h"
 
 CSVLoader::CSVLoader(const char *sourceFileName) {
-    // Setup initial class property
     std::string filename(sourceFileName);
     this->file = filename;
 }
@@ -20,37 +9,29 @@ CSVLoader::~CSVLoader() {
 }
 
 void CSVLoader::parseRoomToHotel(Hotel &hotel) {
-    // Create input file stream
+
     std::ifstream ifs(this->file);
 
-    // Create temporary variables to read from line
+
     std::string line;
     int id, capacity, prize, floor, door;
     char del1, del2, del3, del4;
 
     if (ifs.is_open()) {
-        // Setup line counter, for better exception message if will be error in csv
         int lineCounter = 1;
 
-        // Read each line from csv file to variable line
         while (getline(ifs, line, '\n')) {
 
-            // Create string stream from line and parse it
             std::stringstream cline;
             cline << line;
             cline >> id >> del1 >> capacity >> del2 >> prize >> del3 >> floor >> del4 >> door;
 
-            // If was fail during parse parameters I throw exception
             if (cline.fail() || !(del1 == del2 && del3 == del4 && del1 == del3)) {
                 throw "Parse csv error in file " + this->file + " on line " + std::to_string(lineCounter);
             }
 
             try {
-                // Create room object if data was wrong constructor throw an exception
                 Room room(id, capacity, prize, floor, door);
-
-                // Try push room to vector of all rooms if was duplicate id method throw exception
-                // And after that i catch and add information which line was error
                 hotel.pushRoomToDatabase(room);
             } catch (const InvalidRoomIdException &err) {
                 ifs.close();

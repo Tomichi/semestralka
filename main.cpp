@@ -1,12 +1,3 @@
-/**
- * @file    main.cpp
- * @author  Tomáš Michna
- * @date    December, 2015
- * @bug     No known bugs.
- * @brief   Implementation of main function
- *
- * This file contains implementation of main function
- */
 #include <iostream>
 #include <vector>
 #include "Hotel.h"
@@ -16,27 +7,21 @@
 #include "DateValidator.h"
 #include "HtmlExport.h"
 
-// This function print menu
 void printMenu();
 
-// This function print room information
 void printRoom(std::vector<Room> &);
 
 int main(int argc, char *argv[]) {
-    // control input parameter
     if (argc != 3) {
         std::cout << "Invalid input parameters must be 2 input files,\n"
                 " first file contains data from rooms and last one contains room reservation\n";
         return 1;
     }
 
-    // Setup hotel
     Hotel hotel;
 
-    // Setup Calendar to actual year
     BookingCalendar calendar(2015);
     try {
-        // Try to load csv files
         CSVLoader roomCSV(argv[1]);
         roomCSV.parseRoomToHotel(hotel);
 
@@ -53,7 +38,6 @@ int main(int argc, char *argv[]) {
             break;
         int menu;
         printMenu();
-        // Load which operation do user want
         std::cout << "Choose your choice\n";
         std::cin >> menu;
         if (std::cin.fail() || menu < 1 || menu > 6) {
@@ -70,7 +54,6 @@ int main(int argc, char *argv[]) {
                 std::cin >> id;
                 bool isCinOk = std::cin.fail();
 
-                // Control if load was successful
                 std::cout << "Write date by YYYY MM DD format:";
                 std::cin >> y >> m >> d;
                     if (isCinOk || std::cin.fail() || !DateValidator::isDateValidate(y, m, d)) {
@@ -78,14 +61,12 @@ int main(int argc, char *argv[]) {
                     break;
                 }
 
-                // Control if room exist
                 SearchResult result = hotel.findRoomInHotels(id);
                 if (!result.getFound()) {
                     std::cout << "This id doesnt exist\n";
                     break;
                 }
                 try {
-                    // Try to reserve room
                     calendar.reserveRoom(hotel.getRoomByIndex(result.getIndex()), y, m, d);
                 } catch (std::string &er) {
                     std::cout << er;
@@ -99,7 +80,6 @@ int main(int argc, char *argv[]) {
             case 2: {
                 int y, m, d;
 
-                // Load date
                 std::cout << "Write date by YYYY MM DD format:";
                 std::cin >> y >> m >> d;
                 if (std::cin.fail() || !DateValidator::isDateValidate(y, m, d)) {
@@ -107,7 +87,6 @@ int main(int argc, char *argv[]) {
                     break;
                 }
 
-                // Find free rooms in this day
                 std::vector<Room> rooms;
                 try {
                     calendar.findFreeRoomInDay(hotel, y, m, d, rooms);
@@ -125,7 +104,6 @@ int main(int argc, char *argv[]) {
             case 3: {
                 int y, m, d;
 
-                // Load date
                 std::cout << "Write date by YYYY MM DD format:";
                 std::cin >> y >> m >> d;
                 if (std::cin.fail() || !DateValidator::isDateValidate(y, m, d)) {
@@ -133,7 +111,6 @@ int main(int argc, char *argv[]) {
                     break;
                 }
 
-                // Load prize
                 int prize;
                 std::cout << "Type a max prize:\n";
                 std::cin >> prize;
@@ -142,7 +119,6 @@ int main(int argc, char *argv[]) {
                     break;
                 }
 
-                // Find free rooms in this day limited by prize
                 std::vector<Room> rooms;
                 try {
                     calendar.findFreeRoomInDayByPrize(hotel, prize, y, m, d, rooms);
@@ -160,7 +136,6 @@ int main(int argc, char *argv[]) {
             case 4: {
                 int y, m, d;
 
-                // Load date
                 std::cout << "Write date by YYYY MM DD format:";
                 std::cin >> y >> m >> d;
                 if (std::cin.fail() || !DateValidator::isDateValidate(y, m, d)) {
@@ -168,7 +143,6 @@ int main(int argc, char *argv[]) {
                     break;
                 }
 
-                // Load capacity
                 int capacity;
                 std::cout << "Type a max capacity:\n";
                 std::cin >> capacity;
@@ -177,7 +151,6 @@ int main(int argc, char *argv[]) {
                     break;
                 }
 
-                // Find free rooms in this day limited by capacity
                 std::vector<Room> rooms;
                 try {
                     calendar.findFreeRoomInDayByCapacity(hotel, capacity, y, m, d, rooms);
@@ -210,7 +183,6 @@ int main(int argc, char *argv[]) {
                     break;
                 }
 
-                // Load id room
                 int id;
                 std::cout << "Write id room:\n";
                 std::cin >> id;
@@ -220,7 +192,6 @@ int main(int argc, char *argv[]) {
                     break;
                 }
 
-                // export reservation of room
                 std::vector<std::string> dates;
                 calendar.findRoomByDateRange(hotel.getRoomByIndex(result.getIndex()), y1, m1, d1, y2, m2, d2, dates);
                 HtmlExport html("output.html");
@@ -228,7 +199,6 @@ int main(int argc, char *argv[]) {
                 break;
             };
             case 6: {
-                // end program
                 stop = true;
                 break;
 
